@@ -4,8 +4,6 @@ import org.jeasy.rules.annotation.*;
 
 @Rule(priority = 1)
 public class MartialArtsRule {
-    private String type;
-
 
     /**
      * 规则
