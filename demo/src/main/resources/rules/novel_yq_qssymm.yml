@@ -1,0 +1,6 @@
+name: "武侠 rule"
+description: "言情世界的规则和世界的主角再加上简介"
+condition: "type == \"武侠\""
+actions:
+  - "System.out.print(\"所有人都在搞对象，小说名字是：\" + novel.getName() + \"  主角是：\" + novel.getMaster() + \" 内容简介：\" + novel.getDescription() + \"\n\n\n\");"
+  - "res.add(\"所有人都在搞对象，小说名字是：\" + novel.getName() + \"  主角是：\" + novel.getMaster() + \" 内容简介：\" + novel.getDescription() + \"\n\n\n\");"

@@ -46,28 +46,30 @@
         <dependency>
             <groupId>org.jeasy</groupId>
             <artifactId>easy-rules-core</artifactId>
-            <version>3.2.0</version>
+            <version>4.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.jeasy</groupId>
             <artifactId>easy-rules-support</artifactId>
-            <version>3.2.0</version>
+            <version>4.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.jeasy</groupId>
             <artifactId>easy-rules-mvel</artifactId>
-            <version>3.2.0</version>
+            <version>4.0.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.70</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 
