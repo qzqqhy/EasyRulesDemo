@@ -1,17 +1,16 @@
 package com.easyrules.demo.data;
 
-import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Component
+@PropertySource(value={"classpath:application-novellist.yml"})
 @ConfigurationProperties(prefix = "novellist")
 public class NovelList {
 
@@ -52,23 +51,23 @@ public class NovelList {
                 '}';
     }
 
-    @Bean
-    public void novelArrayList(){
+    @PostConstruct
+    public void novelArrayList() {
         List<Map<String, String>> mapList = this.getList();
-        mapList.forEach((v)->{
-            this.novels.add(new Novel(v.get("name"),v.get("type"),v.get("master"),v.get("author"),v.get("description")));
-            if(this.novelTypes.indexOf(v.get("type")) == -1){
+        mapList.forEach((v) -> {
+            this.novels.add(new Novel(v.get("name"), v.get("type"), v.get("master"), v.get("author"), v.get("description")));
+            if (this.novelTypes.indexOf(v.get("type")) == -1) {
                 this.novelTypes.add(v.get("type"));
             }
         });
     }
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer properties() {
-        PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
-        YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
-        yaml.setResources(new ClassPathResource("novellist.yml"));
-        configurer.setProperties(yaml.getObject());
-        return configurer;
-    }
+//    @Bean
+//    public static PropertySourcesPlaceholderConfigurer properties() {
+//        PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
+//        YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
+//        yaml.setResources(new ClassPathResource("application-novellist.yml"));
+//        configurer.setProperties(yaml.getObject());
+//        return configurer;
+//    }
 }
