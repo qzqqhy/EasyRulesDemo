@@ -1,6 +1,8 @@
 package com.easyrules.demo;
 
 import com.easyrules.demo.data.NovelList;
+import com.easyrules.demo.mapper.UserMapper;
+import com.easyrules.demo.model.User;
 import com.easyrules.demo.rules.MartialArtsRule;
 import com.easyrules.demo.rules.XianxiaRule;
 import com.easyrules.demo.rules.YesOrNo;
@@ -8,9 +10,12 @@ import org.jeasy.rules.api.*;
 import org.jeasy.rules.core.DefaultRulesEngine;
 import org.jeasy.rules.mvel.MVELRuleFactory;
 import org.jeasy.rules.support.reader.YamlRuleDefinitionReader;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
 import java.io.FileReader;
@@ -21,6 +26,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class DemoApplicationTests {
 
@@ -122,5 +128,16 @@ public class DemoApplicationTests {
 
         System.out.println(Thread.currentThread().getContextClassLoader().getResource("/"));
 
+    }
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @org.junit.Test
+    public void testSelect() {
+        System.out.println(("----- selectAll method test ------"));
+        List<User> userList = userMapper.selectList(null);
+        Assert.assertEquals(5, userList.size());
+        userList.forEach(System.out::println);
     }
 }

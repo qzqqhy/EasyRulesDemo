@@ -2,6 +2,7 @@ package com.easyrules.demo.ctrl;
 
 import com.alibaba.fastjson.JSON;
 import com.easyrules.demo.data.NovelList;
+import com.easyrules.demo.mapper.UserMapper;
 import com.easyrules.demo.rules.MartialArtsRule;
 import com.easyrules.demo.rules.XianxiaRule;
 import com.easyrules.demo.rules.YanqingRule;
@@ -30,6 +31,10 @@ public class TestController {
 
     @Autowired
     private NovelList novelList;
+
+    @Autowired
+    private UserMapper userMapper;
+
 
     @RequestMapping("/novelList")
     @ResponseBody
