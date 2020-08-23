@@ -32,7 +32,7 @@ public class TestController {
     @Autowired
     private NovelList novelList;
 
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
 
 
@@ -114,12 +114,16 @@ public class TestController {
         BiConsumer<String,Rules> consumer = (path, rules)->{
             Rule c_rule = null;
             try {
+                ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+                System.out.println("classLoader:"+classLoader.toString());
                 c_rule = ruleFactory.createRule(new FileReader(path));
+                System.out.println("classLoader:"+classLoader.toString());
             } catch (Exception e) {
                 //TODO 日志打印;
             }
             rules.register(c_rule);
         };
+
 
         //规则配置文件循环读取 & 加载规则
         File file = new File( this.getClass().getClassLoader().getResource("").getPath()+"/rules/");

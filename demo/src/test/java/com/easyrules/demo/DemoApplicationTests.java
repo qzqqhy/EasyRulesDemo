@@ -130,7 +130,7 @@ public class DemoApplicationTests {
 
     }
 
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
 
     @org.junit.Test
