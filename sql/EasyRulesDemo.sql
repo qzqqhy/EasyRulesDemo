@@ -20,3 +20,14 @@ INSERT INTO user (id, name, age, email) VALUES
 (3, 'Tom', 28, 'test3@baomidou.com'),
 (4, 'Sandy', 21, 'test4@baomidou.com'),
 (5, 'Billie', 24, 'test5@baomidou.com');
+
+
+#easyrule数据库
+CREATE TABLE `sys_er_rules` (
+      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+      `er_name` varchar(60) DEFAULT NULL,
+      `er_description` varchar(60) DEFAULT NULL,
+      `er_condition` varchar(120) DEFAULT NULL,
+      `er_actions` text,
+      PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
