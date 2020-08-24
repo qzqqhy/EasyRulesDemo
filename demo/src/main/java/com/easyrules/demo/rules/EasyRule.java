@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author liuxiu
@@ -23,9 +23,9 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class EasyRule  {
+public class EasyRule {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private String name;
 
@@ -35,20 +35,20 @@ public class EasyRule  {
 
     private List<String> actions;
 
-    public static List<EasyRule> getEasyRuleList(List<SysErRules> list){
+    public static List<EasyRule> getEasyRuleList(List<SysErRules> list) {
 
         List<EasyRule> easyRuleList = new ArrayList<>();
 
-        if(CollectionUtils.isEmpty(list)){
+        if (CollectionUtils.isEmpty(list)) {
             return easyRuleList;
         }
-        list.forEach(a->{
-            if(StringUtils.isBlank(a.getErActions())|| StringUtils.containsNone(a.getErActions(),"@")){
+        list.forEach(a -> {
+            if (StringUtils.isBlank(a.getErActions()) || StringUtils.containsNone(a.getErActions(), EasyRuleEnum.EASYRULESPLIT.getValue())) {
                 return;
             }
             EasyRule easyRule = new EasyRule(a.getErName(), a.getErDescription(), a.getErCondition());
 
-            List<String> fas = Arrays.asList(a.getErActions().split("@"));
+            List<String> fas = Arrays.asList(a.getErActions().split(EasyRuleEnum.EASYRULESPLIT.getValue()));
             easyRule.setActions(fas);
             easyRuleList.add(easyRule);
         });
@@ -61,6 +61,7 @@ public class EasyRule  {
         this.condition = condition;
         this.actions = actions;
     }
+
     public EasyRule(String name, String description, String condition) {
         this.name = name;
         this.description = description;

@@ -137,6 +137,7 @@ public class SysErRulesController {
 
         facts.put("bool",false);
         rulesEngine.fire(rules, facts);
+        facts.asMap();
         System.out.println(rules);
         //
     }
