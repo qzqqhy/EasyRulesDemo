@@ -1,12 +1,16 @@
 package com.easyrules.demo.ctrl;
 
 import com.alibaba.fastjson.JSON;
+import com.easyrules.demo.data.APIList;
+import com.easyrules.demo.data.ApiItem;
 import com.easyrules.demo.data.NovelList;
 import com.easyrules.demo.mapper.UserMapper;
 import com.easyrules.demo.rules.MartialArtsRule;
 import com.easyrules.demo.rules.XianxiaRule;
 import com.easyrules.demo.rules.YanqingRule;
 import com.easyrules.demo.rules.YesOrNo;
+import com.easyrules.demo.utils.HttpClientUtil;
+import com.easyrules.demo.utils.UnicodeConverteUtil;
 import org.jeasy.rules.api.*;
 import org.jeasy.rules.core.DefaultRulesEngine;
 import org.jeasy.rules.mvel.MVELRuleFactory;
@@ -34,6 +38,9 @@ public class TestController {
 
     @Autowired(required = false)
     private UserMapper userMapper;
+
+    @Autowired(required = false)
+    private APIList apiList;
 
 
     @RequestMapping("/novelList")
@@ -150,6 +157,32 @@ public class TestController {
         });
 
         return res;
+    }
+
+    @RequestMapping("/apilist")
+    @ResponseBody
+    public List<ApiItem> apilist() {
+        return this.apiList.getItemlist();
+    }
+    @RequestMapping("/api001req")
+    @ResponseBody
+    public String api001req() {
+        ArrayList<ApiItem> itemlist = this.apiList.getItemlist();
+        if(itemlist.isEmpty()){
+            return null;
+        }
+        ApiItem apiItem = itemlist.get(0);
+        StringBuilder param = new StringBuilder();
+        param.append("?appid=").append(apiItem.getAppid());
+        param.append("&appsecret=").append(apiItem.getAppSecret());
+        param.append("&version=").append("v6");
+        param.append("&cityid=").append("101010100");
+        param.append("&city=").append("北京");
+        System.out.println(param.toString());
+//        unicode
+        String s = HttpClientUtil.doHttpGet(apiItem.getUrl(), param.toString());
+//        String s1 = s.replaceAll("|\\|", "\\");
+        return UnicodeConverteUtil.unicode2String(s);
     }
 
 }

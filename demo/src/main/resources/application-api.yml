@@ -1,0 +1,6 @@
+apilist:
+  apiitems:
+    - code: '001'
+      url: https://tianqiapi.com/api
+      appid: '72936569'
+      appSecret: Ltisk3YN
