@@ -31,3 +31,8 @@ CREATE TABLE `sys_er_rules` (
       `er_actions` text,
       PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+INSERT INTO `sys_er_rules` (`id`, `er_name`, `er_description`, `er_condition`, `er_actions`)
+VALUES
+(2,'test','1','bool.equals(\"1\")','System.out.print(11111)@map.put(\"aa\",\"11\");map.put(\"bb\",\"11\");map.put(\"a1a\",\"11\");map.put(\"b2b\",\"11\");'),
+(3,'testtianqi','天气','bool.equals(\"2\")','System.out.print(11111)@map.put(\"aa\",\"11\");map.put(\"res\",com.easyrules.demo.utils.HttpClientUtil.doHttpGet(\'https://tianqiapi.com/api\',\'?appid=72936569&appsecret=Ltisk3YN&version=v6&cityid=101010100&city=北京\'));');
